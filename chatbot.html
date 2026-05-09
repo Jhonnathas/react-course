@@ -17,21 +17,30 @@
     <script type="text/babel">
       function ChatbotInput() {
         return (
-        <div>
-            <input />
+        <>
+            <input placeholder="Send a message" size="40"/>
             <button>Send</button>
-        </div>);
+        </>);
+      }
+
+      function ChatbotMessage( props ) {
+        const message = props.message;
+        return (
+          <div>
+            {message}
+            <img src="user.png" width="50"/>
+          </div>
+        );
       }
 
       console.log(dayjs().format('MMMM D, YYYY HH:mm:ss'));
-      const div = <div>
-        {ChatbotInput()}
-      </div>;
+      const app = 
+      <>
+        <ChatbotInput />
+        <ChatbotMessage message="hello chatbot" />
+      </>;
       const container = document.querySelector('.js-container');
-      const root = ReactDOM.createRoot(container);
-      setInterval(() => {
-        root.render(div);
-      }, 1000);
+      const root = ReactDOM.createRoot(container).render(app);
     </script>
   </body>
 </html>
