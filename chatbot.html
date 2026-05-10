@@ -49,11 +49,6 @@
           );
       }
 
-      function SendMessage() {
-        chatMessages.push({message: "New message", sender: "user", id: crypto.randomUUID()});
-        console.log(chatMessages);
-      }
-
       function ChatMessages() {
         const chatMessages = [
           {message: "hello chatbot", sender: "user", id: "id1"},
@@ -62,6 +57,11 @@
           {message: "Nice!", sender: "robot", id: "id4"}
         ];
         
+        function SendMessage() {
+          chatMessages.push({message: "New message", sender: "user", id: crypto.randomUUID()});
+          console.log(chatMessages);
+        }
+
         return (
           <>
             <button onClick={SendMessage}>Send Message</button>
