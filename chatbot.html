@@ -48,17 +48,45 @@
           </div>
           );
       }
+
+      function SendMessage() {
+        ChatMessages.push({message: "New message", sender: "user", id: crypto.randomUUID()});
+        console.log(ChatMessages);
+      }
+
+      function ChatMessages() {
+        const chatMessages = [
+          {message: "hello chatbot", sender: "user", id: "id1"},
+          {message: "how are you?", sender: "robot", id: "id2"},
+          {message: "I'm doing great!", sender: "user", id: "id3"},
+          {message: "Nice!", sender: "robot", id: "id4"}
+        ];
+        
+        return (
+          <>
+            <button onClick={SendMessage}>Send Message</button>
+            {chatMessages.map((chatMessage) =>{
+              return (
+                <ChatbotMessage 
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
+          );
+      }
+
       function App() {
         return (
           <>
             <ChatbotInput />
-            <ChatbotMessage message="hello chatbot" sender="user" />
-            <ChatbotMessage message="how are you?" sender="robot"/>
-            <ChatbotMessage message="I'm doing great!" sender="user"/>
-            <ChatbotMessage message="Nice!" sender="robot"/>
+            <ChatMessages />
           </>
         );
       }
+
       const container = document.querySelector('.js-container');
       const root = ReactDOM.createRoot(container).render(<App />);
     </script>
