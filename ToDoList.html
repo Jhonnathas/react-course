@@ -14,6 +14,7 @@
 
     <script type="text/babel">
       function ToDoInput() {
+        const array = [];
         return (
         <>
         <input 
@@ -22,11 +23,13 @@
             />
             <button onClick={SendMessage}>Send</button>
         </>);
+
+        function SendMessage() {
+          console.log("Send message");
+        }
+
       }
 
-      function SendMessage() {
-        console.log("Send message");
-      }
       
       function App() {
         

@@ -16,11 +16,18 @@
 
     <script type="text/babel">
       function ChatbotInput() {
+        const [inputText, setInputText] = React.useState('');
+        
+        function SaveInputText(event){
+          console.log(event.target.value);
+        }
+        
         return (
         <>
             <input 
               placeholder="Send a message" 
               size="40"
+              onChange={SaveInputText}
             />
             <button>Send</button>
         </>);
@@ -50,16 +57,25 @@
       }
 
       function ChatMessages() {
-        const chatMessages = [
+        const [chatMessages, setChatMessages] = React.useState([
           {message: "hello chatbot", sender: "user", id: "id1"},
           {message: "how are you?", sender: "robot", id: "id2"},
           {message: "I'm doing great!", sender: "user", id: "id3"},
           {message: "Nice!", sender: "robot", id: "id4"}
-        ];
-        
+        ]);
+        //const [chatMessages, setChatMessages] = array;
+        //const chatMessages = array[0];
+        //const setChatMessages = array[1];
+
         function SendMessage() {
-          chatMessages.push({message: "New message", sender: "user", id: crypto.randomUUID()});
-          console.log(chatMessages);
+          setChatMessages([
+            ...chatMessages,
+            {
+              message: "new message",
+              sender: "user",
+              id: crypto.randomUUID()
+            }
+          ]);
         }
 
         return (
