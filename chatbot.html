@@ -19,9 +19,13 @@
         const [inputText, setInputText] = React.useState('');
         
         function SaveInputText(event){
-          console.log(event.target.value);
+          setInputText(event.target.value);
         }
         
+        function sendMessage(){
+          console.log(inputText);
+        }
+
         return (
         <>
             <input 
@@ -29,7 +33,8 @@
               size="40"
               onChange={SaveInputText}
             />
-            <button>Send</button>
+            <button onClick={sendMessage}
+            >Send</button>
         </>);
       }
 
