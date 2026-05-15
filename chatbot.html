@@ -10,12 +10,13 @@
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 
     <script type="text/babel">
-      function ChatbotInput(chatMessages, setChatMessages) {
+      function ChatbotInput({chatMessages, setChatMessages}) {
         const [inputText, setInputText] = React.useState('');
         
         function SaveInputText(event){
@@ -23,14 +24,26 @@
         }
         
         function sendMessage(){
-           setChatMessages([
+          const newChatMessages = [
             ...chatMessages,
             {
-              message: "new message",
+              message: inputText,
               sender: "user",
               id: crypto.randomUUID()
             }
+          ];
+           setChatMessages(newChatMessages);
+
+          const response = Chatbot.getResponse(inputText);
+           setChatMessages([
+            ...newChatMessages,
+            {
+              message: response,
+              sender: "robot",
+              id: crypto.randomUUID()
+            }
           ]);
+          setInputText('');
         }
 
         return (
@@ -39,6 +52,7 @@
               placeholder="Send a message" 
               size="40"
               onChange={SaveInputText}
+              value={inputText}
             />
             <button onClick={sendMessage}
             >Send</button>
