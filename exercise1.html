@@ -21,7 +21,8 @@
       console.log(productCost);
       console.log(dayjs().format('MMM D'));
       const dataHJ = (dayjs().format('MMM D'));
-      const div = <div>
+      const time= dayjs().format('HH:mm:ss');
+      const divisao = <div>
         <button>Good job!</button>
         <p>My name is Simon</p>
         <p>Cotton socks</p>
@@ -32,11 +33,11 @@
         <p>Total cost: $ {totalCost}</p>
         <button>Place your order</button>
         <p>Today is {dataHJ}</p>
+        <p>Current time: {time}</p>
       </div>;
-      const container = document.querySelector('.js-container');
-      const root = ReactDOM.createRoot(container);
+      const root = ReactDOM.createRoot(document.querySelector('.js-container'));
       setInterval(() => {
-        root.render(div);
+        root.render(divisao);
       }, 1000);
     </script>
   </body>
